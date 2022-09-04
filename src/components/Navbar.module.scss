@@ -1,0 +1,23 @@
+.container {
+  background-color: rgba(255, 255, 255, .8);
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    a {
+      padding: 1rem 0;
+    }
+  }
+}
+
+.logo {
+  display: inline-block;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
