@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
 import utilStyle from '../styles/util.module.scss'
+import PostCard from './PostCard'
 
 export default function Posts() {
   const [ posts, setPosts ] = useState([])
@@ -17,14 +18,7 @@ export default function Posts() {
     <div className={utilStyle.container}>
       {posts.map(post => {
         return (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-            <time className={utilStyle.lightText}>{new Date(post.created_at).toLocaleDateString("ja-JP", {
-              hour: "2-digit",
-              minute: "2-digit"
-            })}</time>
-          </div>
+          <PostCard key={post.id} post={post} />
         )
       })}
     </div>
