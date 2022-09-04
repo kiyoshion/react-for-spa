@@ -1,4 +1,5 @@
 import navbarStyles from './Navbar.module.scss'
+import utilStyles from '../styles/util.module.scss'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -6,11 +7,16 @@ export default function Navbar() {
     <nav className={navbarStyles.container}>
       <div className={navbarStyles.inner}>
         <div className={navbarStyles.logo}>
-          <Link to="/">React</Link>
+          <Link to="/">SPA with React and Laravel</Link>
         </div>
         <ul className={navbarStyles.list}>
           <li>
-            <Link to="/posts">posts</Link>
+            <Link to="/posts">Posts</Link>
+          </li>
+          <li>
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/posts/create">
+              Add
+            </Link>
           </li>
         </ul>
       </div>

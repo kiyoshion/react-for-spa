@@ -3,6 +3,46 @@
   margin: 0 auto;
 }
 
+.formContainer {
+  > div {
+    margin: 1rem 0;
+  }
+  label {
+    display: block;
+    margin-bottom: .25rem;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: .5rem;
+  }
+}
+
 .lightText {
   color: #aaa;
+}
+
+.flex {
+  display: flex;
+  &.itemCenter {
+    align-items: center;
+  }
+  &.itemStart {
+    align-items: flex-start;
+  }
+}
+
+.btn {
+  border-radius: .25rem;
+  font-weight: bold;
+  font-size: .8rem;
+  padding: .5rem 2rem;
+  transition: all .2s ease;
+  &:hover {
+    background-color: #545454;
+  }
+  &_black {
+    background-color: #242424;
+    color: #eee;
+  }
 }
