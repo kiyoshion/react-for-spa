@@ -19,6 +19,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/login">
+              Sign In
+            </Link>
+          </li>
+          <li>
             <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/register">
               Sign Up
             </Link>
