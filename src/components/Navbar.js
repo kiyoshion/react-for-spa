@@ -18,6 +18,11 @@ export default function Navbar() {
               Add
             </Link>
           </li>
+          <li>
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/register">
+              Sign Up
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
