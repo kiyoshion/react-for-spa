@@ -6,21 +6,31 @@ import utilStyles from '../styles/util.module.scss'
 export default function CreatePost() {
   const [ title, setTitle ] = useState("")
   const [ body, setBody ] = useState("")
-  const createPostURL = 'http://localhost:8000/api/posts'
+  const [ userId, setUserId ] = useState(0)
+  const createItemURL = '/api/items'
   const navigate = useNavigate();
 
-  const getUser = async () => {
+  const getUserId = async () => {
     await axios
+      .get('/api/user')
+      .then(res => {
+        setUserId(res.data.id)
+      })
   }
 
   const StorePost = async () => {
     await axios
-      .post(createPostURL, {
-        "title": title,
-        "body": body,
-      })
-      .then(() => {
-        navigate(`/posts/`)
+      .get('/api/user')
+      .then(res => {
+        axios
+          .post(createItemURL, {
+            "title": title,
+            "body": body,
+            "user_id": res.data.id
+          })
+          .then(() => {
+            navigate(`/items/`)
+          })
       })
   }
 

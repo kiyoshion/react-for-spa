@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../lib/axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import utilStyles from '../styles/util.module.scss'
@@ -8,26 +8,25 @@ export default function Login() {
   const [ email, setEmail ] = useState("")
   const [ password, setPassword ] = useState("")
   // const [ passwordConfirmation, setPasswordConfirmation ] = useState("")
-  const tokenURL = 'http://localhost:8000/sanctum/csrf-cookie'
-  const loginURL = 'http://localhost:8000/login'
+  const csrfURL = '/sanctum/csrf-cookie'
+  const loginURL = '/login'
   const navigate = useNavigate()
 
-  const Login = () => {
-    try {
-      axios.get(tokenURL, {
-        withCredentials: true
+  const Login = async () => {
+    await axios.get(csrfURL)
+
+    axios
+      .post(loginURL, {
+        "email": email,
+        "password": password,
       })
       .then(() => {
-        axios.post(loginURL, {
-          "email": email,
-          "password": password,
-        }, { withCredentials: true
-        })
-        .then(() => {
-          navigate('/')
-        })
+        axios.get('/api/user')
+          .then((res) => {
+            console.log(res.data)
+          })
+        navigate('/')
       })
-    } catch (e) {}
   }
 
   return (

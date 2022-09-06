@@ -11,20 +11,20 @@ export default function Navbar() {
         </div>
         <ul className={navbarStyles.list}>
           <li>
-            <Link to="/posts">Posts</Link>
+            <Link to="/items">Items</Link>
           </li>
           <li>
-            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/posts/create">
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/items/create">
               Add
             </Link>
           </li>
           <li>
-            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/login">
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_blue}`} to="/login">
               Sign In
             </Link>
           </li>
           <li>
-            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/register">
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_blue}`} to="/register">
               Sign Up
             </Link>
           </li>

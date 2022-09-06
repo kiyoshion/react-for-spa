@@ -17,9 +17,16 @@
         &.btn {
           border-radius: .25rem;
           padding: .5rem 2rem;
+          font-size: .8rem;
           &:hover {
             color: #eee;
             opacity: .8;
+          }
+          &_blue {
+            &:hover {
+              color: #0070f3;
+              opacity: .8;
+            }
           }
         }
       }

@@ -18,6 +18,10 @@
   }
 }
 
+.smallText {
+  font-size: .8rem;
+}
+
 .lightText {
   color: #aaa;
 }
@@ -44,5 +48,14 @@
   &_black {
     background-color: #242424;
     color: #eee;
+  }
+  &_blue {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #0070f3;
+    color: #0070f3;
+    &:hover {
+      opacity: .8;
+      color: #0070f3;
+    }
   }
 }

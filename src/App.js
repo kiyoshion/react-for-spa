@@ -4,9 +4,9 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
-import Posts from './components/Posts'
-import Post from './components/Post'
-import CreatePost from './components/CreatePost'
+import Items from './components/Items'
+import Item from './components/Item'
+import CreateItem from './components/CreateItem'
 
 function App() {
   return (
@@ -17,9 +17,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/dashboard" element={<Register />}></Route>
-        <Route path="/posts" element={<Posts />}></Route>
-        <Route path="/posts/:id" element={<Post />}></Route>
-        <Route path="/posts/create" element={<CreatePost />}></Route>
+        <Route path="/items" element={<Items />}></Route>
+        <Route path="/items/:id" element={<Item />}></Route>
+        <Route path="/items/create" element={<CreateItem />}></Route>
       </Routes>
     </Router>
   );
