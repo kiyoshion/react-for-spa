@@ -1,20 +1,30 @@
 import axios from "../lib/axios"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import utilStyles from '../styles/util.module.scss'
 
-export default function CreateItem() {
+export default function EditItem() {
   const [ title, setTitle ] = useState("")
   const [ body, setBody ] = useState("")
-  const updateItemURL = '/api/items'
+  const updateItemURL = '/api/items/'
   const navigate = useNavigate();
+  const params = useParams()
 
-  const StorePost = async () => {
+  useEffect(() => {
+    axios
+      .get(updateItemURL + params.id)
+      .then(res => {
+        setTitle(res.data.item.title)
+        setBody(res.data.item.body)
+      })
+  }, [])
+
+  const UpdateItem = async () => {
     await axios
       .get('/api/user')
       .then(res => {
         axios
-          .post(updateItemURL, {
+          .put(updateItemURL + params.id, {
             "title": title,
             "body": body,
             "user_id": res.data.id
@@ -43,14 +53,15 @@ export default function CreateItem() {
           <textarea
             id="body"
             value={body}
+            rows="30"
             onChange={(e) => setBody(e.target.value)}
           ></textarea>
         </div>
         <div>
           <button
             className={`${utilStyles.btn} ${utilStyles.btn_black}`}
-            onClick={StorePost}
-          >作成</button>
+            onClick={UpdateItem}
+          >Update</button>
         </div>
       </div>
     </div>

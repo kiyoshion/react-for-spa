@@ -7,6 +7,7 @@ import Register from './components/Register'
 import Items from './components/Items'
 import Item from './components/Item'
 import CreateItem from './components/CreateItem'
+import EditItem from './components/EditItem'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/items" element={<Items />}></Route>
         <Route path="/items/:id" element={<Item />}></Route>
         <Route path="/items/create" element={<CreateItem />}></Route>
+        <Route path="/items/:id/edit" element={<EditItem />}></Route>
       </Routes>
     </Router>
   );

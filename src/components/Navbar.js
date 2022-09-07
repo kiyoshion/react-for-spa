@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className={navbarStyles.container}>
       <div className={navbarStyles.inner}>
         <div className={navbarStyles.logo}>
-          <Link to="/">SPA with React and Laravel</Link>
+          <Link to="/">Laravel 9 + React 18 Tutorial</Link>
         </div>
         <ul className={navbarStyles.list}>
           <li>
