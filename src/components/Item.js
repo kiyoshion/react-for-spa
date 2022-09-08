@@ -1,17 +1,21 @@
 import axios from "../lib/axios"
 import { useEffect, useState } from "react"
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
 import utilStyles from '../styles/util.module.scss'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../store/userSlice'
 
 export default function Item() {
   const [ item, setItem ] = useState([])
-  const [ isAuth, setIsAuth ] = useState(false)
   const getItemURL = '/api/items/'
   const params = useParams()
+  const { user } = useSelector(state => state.user)
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getUser())
     axios
         .get(getItemURL + params.id)
         .then((res) => {
@@ -20,21 +24,13 @@ export default function Item() {
             ...res.data.item,
             "created_at": date
           })
-            axios
-            .get('/api/user')
-            .then(res => {
-              console.log('res.data here', res.data)
-              if (res.data.id === item.user_id) {
-                setIsAuth(true)
-              }
-            })
         })
     }, [])
 
   return (
     <>
     <div className={utilStyles.container}>
-      {isAuth ? (<Link to={`/items/${item.id}/edit`}>edit</Link>) : 'false'}
+      {user.id === item.user_id ? (<Link to={`/items/${item.id}/edit`}>edit</Link>) : ''}
       <h1>{item.title}</h1>
       <p>{item.created_at}</p>
       <p>{item.body}</p>

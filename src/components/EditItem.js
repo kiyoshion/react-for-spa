@@ -2,6 +2,7 @@ import axios from "../lib/axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import utilStyles from '../styles/util.module.scss'
+import { useSelector } from "react-redux"
 
 export default function EditItem() {
   const [ title, setTitle ] = useState("")
@@ -9,6 +10,7 @@ export default function EditItem() {
   const updateItemURL = '/api/items/'
   const navigate = useNavigate();
   const params = useParams()
+  const { user } = useSelector(state => state.user)
 
   useEffect(() => {
     axios
@@ -21,17 +23,13 @@ export default function EditItem() {
 
   const UpdateItem = async () => {
     await axios
-      .get('/api/user')
-      .then(res => {
-        axios
-          .put(updateItemURL + params.id, {
-            "title": title,
-            "body": body,
-            "user_id": res.data.id
-          })
-          .then(() => {
-            navigate(`/items/`)
-          })
+      .put(updateItemURL + params.id, {
+        "title": title,
+        "body": body,
+        "user_id": user.id
+      })
+      .then(() => {
+        navigate(`/items/`)
       })
   }
 
