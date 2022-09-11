@@ -33,7 +33,10 @@ export default function Item() {
       {user.id === item.user_id ? (<Link to={`/items/${item.id}/edit`}>edit</Link>) : ''}
       <h1>{item.title}</h1>
       <p>{item.created_at}</p>
-      <p>{item.body}</p>
+      <div
+        className={utilStyles.contentBody}
+        dangerouslySetInnerHTML={{__html: item.body}}
+      ></div>
     </div>
     </>
   )

@@ -4,7 +4,11 @@ import itemCardStyles from './ItemCard.module.scss'
 
 export default function ItemCard({ item }) {
   return (
-    <Link to={`/items/${item.id}`}>
+    <div className={itemCardStyles.mainContainer}>
+      <Link
+        className={itemCardStyles.link}
+        to={`/items/${item.id}`}
+      />
       <div className={itemCardStyles.metaContainer}>
         <span className={utilStyles.lightText}>{item.user.name}</span>
         <time className={`${utilStyles.lightText} ${utilStyles.smallText}`}>{new Date(item.created_at).toLocaleDateString("ja-JP", {
@@ -14,7 +18,6 @@ export default function ItemCard({ item }) {
       </div>
       <h2>{item.title}</h2>
       <p>{item.body}</p>
-
-    </Link>
+    </div>
   )
 }

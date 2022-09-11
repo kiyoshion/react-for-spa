@@ -7,12 +7,16 @@ export const userSlice = createSlice({
     user: {
       id: 0,
       name: ""
-    }
+    },
+    isLogined: false
   },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload
     },
+    setIsLogined: (state, action) => {
+      state.isLogined = action.payload
+    }
   }
 })
 
@@ -21,6 +25,12 @@ export const getUser = () => async (dispatch) => {
   dispatch(setUser(res.data))
 }
 
-export const { setUser } = userSlice.actions
+export const csrf = () => async (dispatch) => {
+  const res = await axios.get('/sanctum/csrf-cookie')
+  console.log(res.data)
+  res.data ? dispatch(setIsLogined(true)) : dispatch(setIsLogined(false))
+}
+
+export const { setUser, setIsLogined } = userSlice.actions
 
 export default userSlice.reducer

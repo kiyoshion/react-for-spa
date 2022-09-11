@@ -2,18 +2,20 @@ import axios from "../lib/axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import utilStyles from '../styles/util.module.scss'
+import { csrf } from '../store/userSlice'
+import { useDispatch } from "react-redux";
 
 export default function Login() {
-  // const [ name, setName ] = useState("")
   const [ email, setEmail ] = useState("")
   const [ password, setPassword ] = useState("")
-  // const [ passwordConfirmation, setPasswordConfirmation ] = useState("")
-  const csrfURL = '/sanctum/csrf-cookie'
+  // const csrfURL = '/sanctum/csrf-cookie'
   const loginURL = '/login'
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const Login = async () => {
-    await axios.get(csrfURL)
+    await dispatch(csrf())
+    // await axios.get(csrfURL)
 
     axios
       .post(loginURL, {
