@@ -1,6 +1,6 @@
 import axios from "../lib/axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import utilStyles from '../styles/util.module.scss'
 import { csrf } from '../store/userSlice'
 import { useDispatch } from "react-redux";
@@ -8,15 +8,12 @@ import { useDispatch } from "react-redux";
 export default function Login() {
   const [ email, setEmail ] = useState("")
   const [ password, setPassword ] = useState("")
-  // const csrfURL = '/sanctum/csrf-cookie'
   const loginURL = '/login'
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const Login = async () => {
     await dispatch(csrf())
-    // await axios.get(csrfURL)
-
     axios
       .post(loginURL, {
         "email": email,
@@ -34,15 +31,6 @@ export default function Login() {
   return (
     <div className={utilStyles.container}>
       <div className={utilStyles.formContainer}>
-        {/* <div>
-          <label htmlFor="name">name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => {setName(e.target.value)}}
-          />
-        </div> */}
         <div>
           <label htmlFor="email">email</label>
           <input
@@ -66,6 +54,12 @@ export default function Login() {
             className={`${utilStyles.btn} ${utilStyles.btn_black}`}
             onClick={Login}
           >Login</button>
+        </div>
+        <div>
+          <p>You don't have an account?</p>
+          <Link to="/register">
+            Register
+          </Link>
         </div>
       </div>
     </div>

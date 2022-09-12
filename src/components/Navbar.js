@@ -27,12 +27,7 @@ export default function Navbar() {
             <>
               <li>
                 <Link className={`${navbarStyles.btn} ${utilStyles.btn_blue}`} to="/login">
-                  Sign In
-                </Link>
-              </li>
-              <li>
-                <Link className={`${navbarStyles.btn} ${utilStyles.btn_blue}`} to="/register">
-                  Sign Up
+                  Create Account
                 </Link>
               </li>
             </>

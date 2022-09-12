@@ -15,6 +15,14 @@
   textarea {
     width: 100%;
     padding: .5rem;
+    &.bigInput {
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 1rem;
+      &:focus-visible {
+        outline: none;
+      }
+    }
   }
 }
 

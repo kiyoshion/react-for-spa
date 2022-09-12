@@ -5,18 +5,18 @@ import utilStyles from '../styles/util.module.scss'
 import { EditorState, convertFromRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { convertToHTML } from "draft-convert"
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export default function CreateItem() {
   const [ title, setTitle ] = useState("")
   const updateItemURL = '/api/items'
   const navigate = useNavigate();
-  const [ htmlContent, setHtmlContent ] = useState('')
   const initData = convertFromRaw({
     entityMap: {},
     blocks: [
       {
         key: "xxxxxx",
-        text: "ここに初期テキストがはいります。",
+        text: "",
         type: "unstyled",
         depth: 0,
         entityRanges: [],
@@ -62,11 +62,12 @@ export default function CreateItem() {
       <h1>記事を投稿</h1>
       <div className={utilStyles.formContainer}>
         <div>
-          <label htmlFor="title">タイトル</label>
           <input
             type="text"
             id="title"
+            className={utilStyles.bigInput}
             value={title}
+            placeholder="Title"
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -76,6 +77,7 @@ export default function CreateItem() {
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
+          placeholder="Type here"
         />
         <div>
           <button

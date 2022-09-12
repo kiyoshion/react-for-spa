@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import utilStyles from '../styles/util.module.scss'
 
 export default function Register() {
@@ -77,6 +77,12 @@ export default function Register() {
             className={`${utilStyles.btn} ${utilStyles.btn_black}`}
             onClick={Register}
           >Register</button>
+        </div>
+        <div>
+          <p>Do you have an account?</p>
+          <Link to="/login">
+            Login
+          </Link>
         </div>
       </div>
     </div>
