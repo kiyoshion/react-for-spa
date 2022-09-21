@@ -78,6 +78,25 @@ export default function CreateItem() {
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
           placeholder="Type here"
+          toolbar={{
+            options: ["inline", "blockType", "list", "textAlign", "link"],
+            inline: {
+              options: ["bold", "strikethrough"],
+            },
+            blockType: {
+              inDropdown: false,
+              options: ["H2"],
+            },
+            list: {
+              options: ["unordered"],
+            },
+            textAlign: {
+              options: ["center"],
+            },
+            link: {
+              options: ["link"],
+            },
+          }}
         />
         <div>
           <button

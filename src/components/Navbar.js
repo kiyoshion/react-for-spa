@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className={navbarStyles.inner}>
         <div className={navbarStyles.logo}>
           <Link to="/">
-            CGM with Laravel 9 + React 18
+            yomuel
           </Link>
         </div>
         <ul className={navbarStyles.list}>
