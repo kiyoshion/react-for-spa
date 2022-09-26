@@ -24,6 +24,7 @@ export default function EditItem() {
       .get(updateItemURL + params.id)
       .then(res => {
         setTitle(res.data.item.title)
+        // setEditorState(res.data.item.body)
         // setBody(res.data.item.body)
         const initData = convertFromRaw({
           entityMap: {},
@@ -61,7 +62,7 @@ export default function EditItem() {
     await axios
       .put(updateItemURL + params.id, {
         "title": title,
-        "body": convertedContent,
+        "body": convertToHTML(convertedContent),
         "user_id": user.id
       })
       .then(() => {

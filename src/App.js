@@ -8,6 +8,9 @@ import Items from './components/Items'
 import Item from './components/Item'
 import CreateItem from './components/CreateItem'
 import EditItem from './components/EditItem'
+import Material from './components/Material'
+import Materials from './components/Materials'
+import CreateMaterial from './components/CreateMaterial'
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path="/items/:id" element={<Item />}></Route>
         <Route path="/items/create" element={<CreateItem />}></Route>
         <Route path="/items/:id/edit" element={<EditItem />}></Route>
+        <Route path="/materials" element={<Materials />}></Route>
+        <Route path="/materials/:id" element={<Material />}></Route>
+        <Route path="/materials/create" element={<CreateMaterial />}></Route>
       </Routes>
     </Router>
   );

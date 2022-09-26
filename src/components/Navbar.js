@@ -16,6 +16,14 @@ export default function Navbar() {
         </div>
         <ul className={navbarStyles.list}>
           <li>
+            <Link to="/materials">Materials</Link>
+          </li>
+          <li>
+            <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/materials/create">
+              Add
+            </Link>
+          </li>
+          <li>
             <Link to="/items">Items</Link>
           </li>
           <li>
