@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import axios from '../lib/axios'
-import utilStyle from '../styles/util.module.scss'
+import axios from '../../lib/axios'
+import utilStyle from '../../styles/util.module.scss'
 import MaterialCard from './MaterialCard'
 
 export default function Materials() {

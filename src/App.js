@@ -8,9 +8,9 @@ import Items from './components/Items'
 import Item from './components/Item'
 import CreateItem from './components/CreateItem'
 import EditItem from './components/EditItem'
-import Material from './components/Material'
-import Materials from './components/Materials'
-import CreateMaterial from './components/CreateMaterial'
+import Material from './components/materials/Material'
+import Materials from './components/materials/Materials'
+import CreateMaterial from './components/materials/CreateMaterial'
 
 function App() {
   return (

@@ -1,7 +1,7 @@
-import axios from "../lib/axios"
+import axios from "../../lib/axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 
 export default function CreateItem() {
   const [ title, setTitle ] = useState("")

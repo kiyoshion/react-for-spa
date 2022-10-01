@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import utilStyles from '../styles/util.module.scss'
-import itemCardStyles from './ItemCard.module.scss'
+import utilStyles from '../../styles/util.module.scss'
+import itemCardStyles from './MaterialCard.module.scss'
 
 export default function MaterialCard({ material }) {
   return (
