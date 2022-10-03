@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import utilStyle from '../styles/util.module.scss'
+import utilStyle from '../../styles/util.module.scss'
 
 export default function PostCard({ post }) {
   return (

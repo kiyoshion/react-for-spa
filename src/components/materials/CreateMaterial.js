@@ -57,18 +57,6 @@ export default function CreateItem() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        {/* <div>
-          <input
-            type="text"
-            value={sectionTitle}
-            onChange={(e) => setSectionTitle(e.target.value)}
-          />
-        </div> */}
-        {/* <div>
-          {secs.map((section, i) => {
-            (<div key={i}>{section.title}</div>)
-          })}
-        </div> */}
         <div>
           {sections.map((section, index) =>
             ( <input
@@ -77,13 +65,11 @@ export default function CreateItem() {
                 key={index}
                 value={section.title}
                 onChange={(e) => updateSections(index, e.target.value )}
-                // onChange={(e) => updateSecs(index, e.target.value)}
               />)
           )}
         </div>
         <button onClick={addSection}>シーズンを追加</button>
         <button onClick={addSectionChildren}>エピソードを追加</button>
-        {/* <button onClick={addSectionTitle}>セクションを追加</button> */}
         <div>
           <button
             className={`${utilStyles.btn} ${utilStyles.btn_black}`}

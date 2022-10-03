@@ -1,17 +1,13 @@
-import axios from "../lib/axios"
+import axios from "../../lib/axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 
 export default function CreatePost() {
   const [ title, setTitle ] = useState("")
   const [ body, setBody ] = useState("")
   const createPostURL = 'http://localhost:8000/api/posts'
   const navigate = useNavigate();
-
-  const getUser = async () => {
-    await axios
-  }
 
   const StorePost = async () => {
     await axios

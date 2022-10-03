@@ -1,11 +1,11 @@
-import axios from "../lib/axios"
+import axios from "../../lib/axios"
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../store/userSlice'
+import { getUser } from '../../store/userSlice'
 
 export default function Item() {
   const [ item, setItem ] = useState([])

@@ -1,21 +1,19 @@
-import axios from "../lib/axios"
+import axios from "../../lib/axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 import { useSelector } from "react-redux"
 import { EditorState, convertFromRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { convertToHTML } from "draft-convert"
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export default function EditItem() {
   const [ title, setTitle ] = useState("")
-  // const [ body, setBody ] = useState("")
   const updateItemURL = '/api/items/'
   const navigate = useNavigate();
   const params = useParams()
   const { user } = useSelector(state => state.user)
-
   const [ editorState, setEditorState ] = useState(null)
   const [ convertedContent, setConvertedContent ] = useState(null)
 
@@ -24,8 +22,6 @@ export default function EditItem() {
       .get(updateItemURL + params.id)
       .then(res => {
         setTitle(res.data.item.title)
-        // setEditorState(res.data.item.body)
-        // setBody(res.data.item.body)
         const initData = convertFromRaw({
           entityMap: {},
           blocks: [
@@ -110,12 +106,6 @@ export default function EditItem() {
             },
           }}
         />
-          {/* <textarea
-            id="body"
-            value={body}
-            rows="30"
-            onChange={(e) => setBody(e.target.value)}
-          ></textarea> */}
         </div>
         <div>
           <button

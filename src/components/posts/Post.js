@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 
 export default function Post() {
   const [ post, setPost ] = useState([])

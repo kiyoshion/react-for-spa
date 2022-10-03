@@ -1,11 +1,11 @@
-import axios from "../lib/axios"
+import axios from "../../lib/axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import utilStyles from '../styles/util.module.scss'
+import utilStyles from '../../styles/util.module.scss'
 import { EditorState, convertFromRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { convertToHTML } from "draft-convert"
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export default function CreateItem() {
   const [ title, setTitle ] = useState("")
