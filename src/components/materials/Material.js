@@ -41,6 +41,7 @@ export default function Material() {
             ...res.data.material,
             "created_at": date
           })
+          console.log(groupBy(res.data.material.sections, "parent_id"))
         })
     }, [])
 
@@ -67,7 +68,7 @@ export default function Material() {
           user_id: res.data.id
         })
         .then(res => {
-          console.log(res.data)
+          setOpenOutputModal(false)
         })
       })
   }
@@ -87,7 +88,7 @@ export default function Material() {
           user_id: res.data.id
         })
         .then(res => {
-          console.log(res.data)
+          setOpenOutputModal(false)
         })
       })
   }

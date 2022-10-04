@@ -1,0 +1,22 @@
+.feedContainer {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 .5rem;
+}
+
+.date {
+  color: #707070;
+  font-size: .8rem;
+  margin-left: .5rem;
+}
+
+.outputCard {
+  background-color: #fff;
+  border-radius: .5rem;
+  // color: #fff;
+  padding: 1rem;
+}
+
+.inlineHeadline {
+  display: inline-block;
+}
