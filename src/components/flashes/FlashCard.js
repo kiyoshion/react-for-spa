@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import flashStyles from './FlashCard.module.scss'
+import ReactCardFlip from 'react-card-flip'
 
 export default function FlashCard({flash}) {
-  const [ status, setStatus ] = useState("front")
   const [ display, setDisplay ] = useState({
     title: "", description: ""
   })
+  const [ isFlipped, setIsFlipped ] = useState(false)
 
   useEffect(() => {
     setDisplay({ title: flash.front_title, description: flash.front_description })
@@ -18,29 +19,32 @@ export default function FlashCard({flash}) {
         speechSynthesis.speak(uttr)
   }
 
-  const flipCard = () => {
-    if (status === "front") {
-      setDisplay({ title: flash.back_title, description: flash.back_description })
-      setStatus("back")
-    } else {
-      setDisplay({ title: flash.front_title, description: flash.front_description })
-      setStatus("front")
-    }
+  const flipCard = (e) => {
+    e.preventDefault()
+    setIsFlipped(!isFlipped)
   }
 
   return (
-    <div
-      className={flashStyles.card}
-      onClick={flipCard}
+    <ReactCardFlip
+      isFlipped={isFlipped}
+      flipDirection="horizontal"
+      flipSpeedBackToFront="0.3"
+      flipSpeedFrontToBack="0.3"
     >
-      <div
-        className={flashStyles.speechButton}
-        onClick={speechTitle}
-      >
-        <span>S</span>
+      <div onClick={flipCard} className={flashStyles.card}>
+        <div
+          className={flashStyles.speechButton}
+          onClick={speechTitle}
+        >
+          <span>S</span>
+        </div>
+        <h2>{flash.front_title}</h2>
+        <p>{flash.front_description}</p>
       </div>
-      <h2>{display.title}</h2>
-      <p>{display.description}</p>
-    </div>
+      <div onClick={flipCard} className={`${flashStyles.card} ${flashStyles.back}`}>
+        <h2>{flash.back_title}</h2>
+        <p>{flash.back_description}</p>
+      </div>
+    </ReactCardFlip>
   )
 }
