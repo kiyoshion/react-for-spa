@@ -1,6 +1,8 @@
 .container {
   background-color: rgba(255, 255, 255, .8);
   margin-bottom: 3rem;
+  width: 100%;
+  overflow-x: scroll;
   .inner {
     display: flex;
     align-items: center;

@@ -9,7 +9,7 @@ import { getUser } from '../../store/userSlice'
 
 export default function Material() {
   const [ material, setMaterial ] = useState({
-    title: "", seasons: []
+    title: "", sections: []
   })
   const [ output, setOutput ] = useState("")
   const [ flash, setFlash ] = useState({
@@ -107,12 +107,10 @@ export default function Material() {
               (
                 <div key={section.id}>{section.title}</div>
               ) : (
-                <>
-                  <div key={section.id}>
-                    <Link to={`/sections/${section.id}`}>{section.title}({`${section.outputCount + section.flashCount}`})</Link>
-                    <span onClick={() => handleOpenOutput(section.title, section.id, section.parent_id)}>out</span>
-                  </div>
-                </>
+                <div key={section.id}>
+                  <Link to={`/sections/${section.id}`}>{section.title}({`${section.outputCount + section.flashCount}`})</Link>
+                  <span onClick={() => handleOpenOutput(section.title, section.id, section.parent_id)}>out</span>
+                </div>
               )
           )
         )}

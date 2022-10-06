@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.module.scss';
 import Navbar from './components/Navbar'
+import GlobalNav from './components/GlobalNav'
 import Home from './components/Home'
+import Mypage from './components/Mypage'
 import Login from './components/Login'
 import Register from './components/Register'
 import Items from './components/items/Items'
@@ -19,6 +21,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/dashboard" element={<Register />}></Route>
@@ -31,6 +34,7 @@ function App() {
         <Route path="/materials/create" element={<CreateMaterial />}></Route>
         <Route path="/sections/:id" element={<Section />}></Route>
       </Routes>
+      <GlobalNav />
     </Router>
   );
 }
