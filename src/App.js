@@ -14,6 +14,9 @@ import Material from './components/materials/Material'
 import Materials from './components/materials/Materials'
 import CreateMaterial from './components/materials/CreateMaterial'
 import Section from './components/sections/Section'
+import Rooms from './components/rooms/Rooms'
+import Room from './components/rooms/Room'
+import CreateRoom from './components/rooms/CreateRoom'
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
         <Route path="/materials/:id" element={<Material />}></Route>
         <Route path="/materials/create" element={<CreateMaterial />}></Route>
         <Route path="/sections/:id" element={<Section />}></Route>
+        <Route path="/rooms" element={<Rooms />}></Route>
+        <Route path="/rooms/:id" element={<Room />}></Route>
+        <Route path="/rooms/create" element={<CreateRoom />}></Route>
       </Routes>
       <GlobalNav />
     </Router>

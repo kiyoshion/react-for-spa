@@ -15,7 +15,7 @@ export default function Materials() {
   }, [])
 
   return (
-    <div className={utilStyle.container}>
+    <div className={`${utilStyle.container} ${utilStyle.flex}`}>
       {materials.map(material => {
         return (
           <MaterialCard key={material.id} material={material} />

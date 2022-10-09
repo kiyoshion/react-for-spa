@@ -1,8 +1,15 @@
 .mainContainer {
   position: relative;
-  width: 100%;
-  min-height: 200px;
-  margin-bottom: 1rem;
+  width: 32%;
+  margin: 0 auto .5rem;
+  h2 {
+    margin-top: .25rem;
+    font-size: .8rem;
+    line-height: .8rem;
+    height: 2rem;
+    overflow-y: none;
+    font-weight: 600;
+  }
 }
 
 .link {

@@ -19,6 +19,12 @@ export default function Navbar() {
             <Link to="/materials">Materials</Link>
           </li>
           <li>
+            <Link to="/rooms">rooms</Link>
+          </li>
+          <li>
+            <Link to="/rooms/create">ar</Link>
+          </li>
+          <li>
             <Link className={`${navbarStyles.btn} ${utilStyles.btn_black}`} to="/materials/create">
               Add
             </Link>
@@ -35,7 +41,7 @@ export default function Navbar() {
             <>
               <li>
                 <Link className={`${navbarStyles.btn} ${utilStyles.btn_blue}`} to="/login">
-                  Create Account
+                  +
                 </Link>
               </li>
             </>
