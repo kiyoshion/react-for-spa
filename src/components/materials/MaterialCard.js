@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import utilStyles from '../../styles/util.module.scss'
 import MaterialCardStyles from './MaterialCard.module.scss'
 import { CONSTS } from '../../Consts'
 
@@ -12,7 +11,11 @@ export default function MaterialCard({ material }) {
       />
       <div className={MaterialCardStyles.metaContainer}>
       </div>
-      <img alt={material.title} src={`${CONSTS.BACKEND_HOST_STORAGE}${material.thumbnail}`} />
+      {material.thumbnail ? (
+        <img alt={material.title} src={`${CONSTS.BACKEND_HOST_STORAGE}${material.thumbnail}`} />
+      ) : (
+        <div className={MaterialCardStyles.noimage}>{material.title}</div>
+      )}
       <h2>{material.title}</h2>
     </div>
   )

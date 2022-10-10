@@ -27,3 +27,13 @@
     margin-left: 1rem;
   }
 }
+
+.noimage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 120px;
+  background-color: #333;
+  color: #fff;
+}

@@ -19,6 +19,7 @@ export default function Material() {
   const [ currentSection, setCurrentSection ] = useState({ title: "", id: 0, parent: "" })
   const [ currentOutputType, setCurrentOutputType ] = useState("output")
   const [ openOutputModal, setOpenOutputModal ] = useState(false)
+  const [ sections, setSections ] = useState([])
   const getRoomURL = '/api/rooms/'
   const storeOutputURL = '/api/outputs/'
   const storeFlashURL = '/api/flashes/'
@@ -42,20 +43,24 @@ export default function Material() {
             ...res.data.room,
             "created_at": date
           })
+          res.data.room.materials.map((m) => {
+            console.log(m)
+            setSections((prev) => [...prev, m.sections])
+          })
         })
     }, [])
 
-  // const handleOpenOutput = (title, id, parentId) => {
-  //   const parent = material.sections.filter(section =>
-  //     section.level === 0 && section.parent_id === parentId
-  //   )
-  //   setCurrentSection({
-  //     title: title,
-  //     id: id,
-  //     parentTitle: parent[0].title
-  //   })
-  //   setOpenOutputModal(!openOutputModal)
-  // }
+  const handleOpenOutput = (title, id, parentId) => {
+    // const parent = material.sections.filter(section =>
+    //   section.level === 0 && section.parent_id === parentId
+    // )
+    setCurrentSection({
+      title: title,
+      id: id,
+      // parentTitle: parent[0].title
+    })
+    setOpenOutputModal(!openOutputModal)
+  }
 
   // const storeOutput = async () => {
   //   await axios
@@ -101,6 +106,29 @@ export default function Material() {
     <>
     <div className={utilStyles.container}>
       <h1>{room.title}</h1>
+        {sections.map((s, index) => (
+          <div className={MaterialStyles.container} key={index}>
+            {Object.entries(s).map((section) => {
+              return (
+                section[1].level === 0 ?
+                  (
+                    <h2 key={section[1].id}>{section[1].title}</h2>
+                  ) : (
+                    <div key={section[1].id} className={MaterialStyles.section}>
+                      <Link to={`/sections/${section[1].id}`}></Link>
+                      <h3>{section[1].title} ({`${section[1].outputCount + section[1].flashCount}`})</h3>
+                      <p>Just a small town girl...</p>
+                      <span
+                        className={MaterialStyles.outputButton}
+                        onClick={() => handleOpenOutput(section[1].title, section[1].id, section[1].parent_id)}
+                      >out</span>
+                    </div>
+                  )
+              )
+            })}
+          </div>
+              ))}
+
       {/* <div className={MaterialStyles.container}>
         {room.materials?.map((section) => (
             section.level === 0 ?

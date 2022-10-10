@@ -7,7 +7,6 @@ import outputFormStyles from './OutputForm.module.scss'
 import { useDispatch } from 'react-redux'
 import { getUser } from '../../store/userSlice'
 import MaterialStyles from './Material.module.scss'
-import { useDropzone } from 'react-dropzone'
 import { CONSTS } from '../../Consts'
 
 export default function Material() {
@@ -45,6 +44,9 @@ export default function Material() {
             "created_at": date
           })
           console.log(groupBy(res.data.material.sections, "parent_id"))
+        })
+        .then(res => {
+
         })
     }, [])
 
@@ -123,7 +125,7 @@ export default function Material() {
       <div className={utilStyles.container}>
         <div className={MaterialStyles.buttonLarge}>
           <Link to={`/rooms/create?id=${material.id}`}>
-            + この教材でクラスをつくる
+            + この教材で学習をはじめる
           </Link>
         </div>
         <div className={MaterialStyles.container}>
