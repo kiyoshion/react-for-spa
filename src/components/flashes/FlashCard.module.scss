@@ -4,21 +4,13 @@
   min-height: 200px;
   background-color: #fff;
   border-radius: .5rem;
-  padding: 2rem;
+  padding: 1rem;
   margin: .5rem auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   z-index: 99;
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    text-align: center;
-  }
-  p {
-    text-align: left;
-  }
   &Front {
     position: relative;
     opacity: 1;
@@ -40,11 +32,15 @@
 }
 
 .back {
-  background-color: #f6f2f2;
+  background-color: #1e1e28;
+  color: #fff;
+  p {
+    color: #fff;
+  }
 }
 
 .speechButton {
-  position: absolute;
+  // position: absolute;
   background-color: #404040;
   color: #fff;
   width: 48px;
@@ -58,4 +54,99 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.zoomContainer {
+  // position: relative;
+  // position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: .5rem;
+    object-fit: cover;
+  }
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem 1rem 1rem;
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5rem;
+    text-align: center;
+  }
+  p {
+    color: #888;
+    line-height: 1rem;
+    // font-weight: 600;
+    text-align: left;
+  }
+}
+
+.back {
+  .cardContent {
+    p {
+      color: #fff;
+    }
+  }
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flashModalContainer {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(25, 25, 25, .9);
+  z-index: 101;
+}
+
+.flashModalInner {
+  width: 100%;
+  height: 90vh;
+  overflow-y: scroll;
+  color: #fff;
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+  }
+  p {
+    font-size: .8rem;
+    font-weight: 600;
+    color: #ddd;
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.flashModalHeader {
+  margin: 1rem 3rem 1rem 1rem;
+}
+
+.flipButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  padding: 1rem;
 }
