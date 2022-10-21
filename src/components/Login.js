@@ -2,8 +2,9 @@ import axios from "../lib/axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import utilStyles from '../styles/util.module.scss'
-import { csrf } from '../store/userSlice'
-import { useDispatch } from "react-redux";
+import { csrf, setIsLogined } from '../store/userSlice'
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../store/userSlice";
 
 export default function Login() {
   const [ email, setEmail ] = useState("")
@@ -11,6 +12,7 @@ export default function Login() {
   const loginURL = '/login'
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user.user)
 
   const Login = async () => {
     await dispatch(csrf())
@@ -22,7 +24,8 @@ export default function Login() {
       .then(() => {
         axios.get('/api/user')
           .then((res) => {
-            console.log(res.data)
+            dispatch(setUser({ id: res.data.id, name: res.data.name, avatar: res.data.avatar }))
+            dispatch(setIsLogined(true))
           })
         navigate('/')
       })

@@ -8,12 +8,14 @@
   color: #fff;
   display: flex;
   align-items: center;
+  z-index: 99;
 }
 
 .inner {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 100%;
   padding: 0 1rem;
   a {
     color: #fff;

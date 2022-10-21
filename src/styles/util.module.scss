@@ -14,8 +14,8 @@ p {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  margin: 0 1rem
+  padding: 0 1rem;
+  margin-bottom: 6rem;
 }
 
 .formContainer {
@@ -37,6 +37,20 @@ p {
       &:focus-visible {
         outline: none;
       }
+    }
+  }
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: .5rem;
+  &.bigInput {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    &:focus-visible {
+      outline: none;
     }
   }
 }

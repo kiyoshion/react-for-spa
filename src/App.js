@@ -3,6 +3,7 @@ import './App.module.scss';
 import Navbar from './components/Navbar'
 import GlobalNav from './components/GlobalNav'
 import Home from './components/Home'
+import About from './components/About'
 import Mypage from './components/Mypage'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -17,13 +18,23 @@ import Section from './components/sections/Section'
 import Rooms from './components/rooms/Rooms'
 import Room from './components/rooms/Room'
 import CreateRoom from './components/rooms/CreateRoom'
+import AvatarModal from './components/modals/AvatarModal';
+import { useSelector } from 'react-redux';
+import JoinTopicModal from './components/modals/JoinTopicModal';
+import OutputModal from './components/modals/OutputModal';
 
 function App() {
+  const avatarModal = useSelector(state => state.modal.avatarModal)
+  const joinTopicModal = useSelector(state => state.modal.joinTopicModal)
+  const currentMaterial = useSelector(state => state.material.currentMaterial)
+  const openOutputModal = useSelector(state => state.modal.openOutputModal)
+
   return (
     <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
@@ -40,6 +51,9 @@ function App() {
         <Route path="/rooms/:id" element={<Room />}></Route>
         <Route path="/rooms/create" element={<CreateRoom />}></Route>
       </Routes>
+      { avatarModal && <AvatarModal /> }
+      { joinTopicModal && <JoinTopicModal material={currentMaterial} /> }
+      { openOutputModal && <OutputModal material={currentMaterial} />}
       <GlobalNav />
     </Router>
   );
