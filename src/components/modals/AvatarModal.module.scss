@@ -1,0 +1,55 @@
+$backgroundColor: rgba(0, 0, 0, .8);
+
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: $backgroundColor;
+  color: #fff;
+  z-index: 101;
+  .inner {
+    padding: 2rem;
+    h2 {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+}
+
+.uploadButton {
+  input {
+    display: none;
+  }
+}
+
+.footerButtonContainer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $backgroundColor;
+  z-index: 101;
+  > div {
+    margin: 1rem;
+    text-align: center;
+  }
+  button {
+    border-radius: .25rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    text-align: center;
+    &.primaryButton {
+      width: 100%;
+      background-color: rgb(209, 93, 93);
+    }
+    &.secondaryButton {
+      display: inline-block;
+      padding: .5rem 1rem;
+    }
+  }
+}
