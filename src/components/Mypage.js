@@ -1,196 +1,76 @@
-import { useEffect, useState, useCallback } from "react"
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import { setUser } from '../store/userSlice'
 import axios from '../lib/axios'
-import Crop from '../lib/Crop'
-import MypageStyles from './Maypage.module.scss'
-import Cropper from 'react-easy-crop'
-import "react-image-crop/dist/ReactCrop.css"
-import ReactCrop from 'react-image-crop'
-export const ASPECT_RATIO = 1/ 1
-export const CROP_WIDTH = 400
+import { CONSTS } from '../Consts'
+import { useDispatch, useSelector } from "react-redux";
+import { setAvatarModal, setCroppedModal } from "../store/modalSlice";
+import AvatarModalStyles from '../components/modals/AvatarModal.module.scss'
+import Avatar from "./common/Avatar";
+import mypageStyles from './Maypage.module.scss'
+import JoinTopicModalStyles from './modals/JoinTopicModal.module.scss'
+import JoinedMaterialCard from "./common/JoinedMaterialCard";
+import AvatarModal from "./modals/AvatarModal";
 
 export default function Mypage() {
   const getUserURL = '/api/user'
   const navigate = useNavigate();
-  const [ user, setUser ] = useState({
-    name: ""
-  })
-  const [ avatarModal, setAvatarModal ] = useState(false)
-  const [ crop, setCrop ] = useState({
-    unit: 'px',
-    x: 25,
-    y: 25,
-    width: 300,
-    height: 300
-  })
-  const [ zoom, setZoom ] = useState(1)
-  const [ src, setSrc ] = useState(null)
-  const [ imgSrc, setImgSrc ] = useState(null)
-  const [ isOpen, setIsOpen ] = useState(false)
-  const [ croppedImgSrc, seCroppedImgSrc ] = useState("")
-  const [ image, setImage ] = useState(null)
-  const [ result, setResult ] = useState(null)
-
-  const handleAvatarModal = () => {
-    setAvatarModal(!avatarModal)
-  }
-
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels)
-  }, [])
-
-  // const setImgSrc = (e) => {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     const reader = new FileReader()
-  //     reader.addEventListener('load', () => {
-  //       setSrc(reader.result)
-  //     })
-  //     reader.readAsDataURL(e.target.files[0])
-  //   }
-  // }
-
-  // const onChangeFile = useCallback(
-  //   async (e) => {
-  //     if (e.target.files && e.target.files.length > 0) {
-  //       const reader = new FileReader()
-  //       reader.addEventListener('load', () => {
-  //         if (reader.result) {
-  //           setImgSrc(reader.result.toString() || "")
-  //           setIsOpen(true)
-  //         }
-  //       })
-  //       reader.readAsDataURL(e.target.files[0])
-  //     }
-  //   }, []
-  // )
-
-  // const onMediaLoaded = useCallback((mediaSize: MediaSize) => {
-  //   const { width, height } = mediaSize
-  //   const mediaAspectRadio = width / height
-  //   if (mediaAspectRadio > ASPECT_RATIO) {
-  //     const result = CROP_WIDTH / ASPECT_RATIO / height
-  //     setZoom(result)
-  //     setMinZoom(result)
-  //     return
-  //   }
-  // })
+  const user = useSelector(state => state.user.user)
+  const avatarModal = useSelector(state => state.modal.avatarModal)
+  const [ joinedMaterials, setJoinedMaterials ] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     axios.get(getUserURL)
       .then(res => {
-        setUser({ name: res.data.name })
+        dispatch(setUser({ id: res.data.id, name: res.data.name, avatar: res.data.avatar}))
+        axios
+          .get(CONSTS.GET_HOME_URL)
+            .then(res => {
+              setJoinedMaterials(res.data.materials)
+            })
       })
+
   }, [])
 
-  const handleImage = async (e) => {
-    setImgSrc(URL.createObjectURL(e.target.files[0]))
+  const handleLogout = () => {
+    axios
+      .post(CONSTS.POST_LOGOUT)
+      .then(res => {
+        dispatch(setUser({ id: 0, name: "", avatar: "" }))
+        navigate('/')
+      })
   }
-
-  const style = {
-    height: '50vh'
-  }
-
-  const getCroppedImg = async () => {
-    try {
-        const canvas = document.createElement("canvas");
-        const scaleX = image.naturalWidth / image.width;
-        const scaleY = image.naturalHeight / image.height;
-        canvas.width = crop.width;
-        canvas.height = crop.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(
-            image,
-            crop.x * scaleX,
-            crop.y * scaleY,
-            crop.width * scaleX,
-            crop.height * scaleY,
-            0,
-            0,
-            crop.width,
-            crop.height
-        );
-
-        const base64Image = canvas.toDataURL("image/jpeg", 1);
-        setResult(base64Image);
-        console.log(result);
-    } catch (e) {
-        console.log("crop the image");
-    }
-};
 
   return (
-    <>
-      <div>
-        <div>
-          <span onClick={handleAvatarModal}>+</span>
-        </div>
-        <h1>{user.name}</h1>
-      </div>
-      <input type="file" accept="image/*" onChange={handleImage} />
-      <div>
-        {imgSrc && (
-          <div>
-            <button onClick={getCroppedImg}>crop</button>
-            <ReactCrop
-              style={{ maxWIdth: "50%" }}
-              src={imgSrc}
-              onImageLoaded={setImage}
-              crop={crop}
-              onChange={c => setCrop(c)}
-            >
-              <img src={imgSrc} alt="image" />
-            </ReactCrop>
-          </div>
-        )}
-        {result && (
-          <div>
-            <img alt="cropped" src={result} />
-          </div>
-        )}
-      </div>
+    <div className={mypageStyles.userContainer} style={{ backgroundImage: `url(${CONSTS.BACKEND_HOST_STORAGE + user.avatar}` }}>
+      <div className={mypageStyles.userInner}>
 
-      {/* <div >
-        <div className={MypageStyles.inner}>
-          <input type="file" accept="image/*" onChange={onChangeFile} />
+      <div className={mypageStyles.userHeader}>
+        <div className={mypageStyles.userHeaderInner}>
+          <div onClick={() => dispatch(setAvatarModal(true))}>
+            <Avatar user={user} size="72" />
+          </div>
           <div>
-            {croppedImgSrc ? (
-              <img src={croppedImgSrc} alt="Cropped" />
-            ): (
-              <p>Cropped img is here</p>
-            )}
-          </div>
-          <Cropper
-            style={style}
-            image={imgSrc}
-            crop={crop}
-            zoom={zoom}
-            open={isOpen}
-            aspect={4 / 3}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-          />
-        </div>
-      </div> */}
-      {/* {avatarModal ? (
-        <div className={MypageStyles.avatarModal}>
-          <div className={MypageStyles.inner}>
-            <input type="file" onChange={onChangeFile} />
-          <Cropper
-            image={imgSrc}
-            crop={crop}
-            zoom={zoom}
-            open={isOpen}
-            aspect={4 / 3}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-          />
+            <h1>{user.name}</h1>
+            <p>{ user.profile && user.profile }</p>
           </div>
         </div>
-      ) : (
-        <div></div>
-      )} */}
-    </>
+      </div>
+      <div className={mypageStyles.logout}>
+        <span onClick={handleLogout} >ログアウト</span>
+      </div>
+      <div className={mypageStyles.joinedMaterialContainer}>
+        <h2>My Sensei ({joinedMaterials.length})</h2>
+        <div className={mypageStyles.joinedMaterialList}>
+          {joinedMaterials.map((material) => {
+            return (
+              <JoinedMaterialCard key={material.id} material={material} />
+            )
+          })}
+        </div>
+      </div>
+      </div>
+    </div>
   )
 }
