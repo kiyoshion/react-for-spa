@@ -1,0 +1,109 @@
+.cardContainer {
+  position: relative;
+  display: flex;
+  margin: 0 1rem 1rem 0;
+}
+
+.link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.lap {
+  &Container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #333;
+    border-radius: 0 0.5rem 0 .5rem;
+    color: #e9dacb;
+    font-size: .6rem;
+    font-weight: 600;
+  }
+  &Inner {
+    display: flex;
+    align-items: flex-end;
+    padding: .25rem 1rem;
+  }
+  &Value {
+    font-size: .8rem;
+    margin-right: .1rem;
+  }
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .1);
+  width: 320px;
+  padding: 1rem;
+  &Img {
+    width: 90px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: .5rem;
+  }
+  &Meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: .5rem 1rem;
+    h3 {
+      font-weight: 600;
+      line-height: 1.2rem;
+    }
+    span {
+      font-size: .8rem;
+      margin-right: .25rem;
+    }
+  }
+}
+
+.progressContainer {
+  position: relative;
+  width: 100%;
+}
+
+.progressBarContainer,
+.progressParentBarContainer {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+}
+
+.lap {
+  font-size: .8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.progressParentBar {
+  height: 6px;
+  position: absolute;
+  left: 0;
+  bottom: .5rem;
+  width: 100%;
+  background: #eee;
+  border-radius: 0 .5rem .5rem 0;
+}
+
+.progressBar {
+  height: 6px;
+  position: absolute;
+  left: 0;
+  bottom: .5rem;
+  background: rgb(80, 175, 216);
+  background: rgb(85,214,212);
+  background: linear-gradient(90deg, rgba(85,214,212,1) 0%, rgba(60,79,176,1) 100%);
+  border-radius: 0 .5rem .5rem 0;
+}
+
