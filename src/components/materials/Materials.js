@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import axios from '../../lib/axios'
 import utilStyle from '../../styles/util.module.scss'
 import MaterialCard from './MaterialCard'
+import { CONSTS } from '../../Consts'
 
 export default function Materials() {
   const [ materials, setMaterials ] = useState([])
-  const getMaterialsURL = '/api/materials'
 
   useEffect(() => {
-    axios.get(getMaterialsURL)
+    axios.get(CONSTS.GET_MATERIALS_URL)
       .then((res) => {
         setMaterials(res.data.materials)
       })

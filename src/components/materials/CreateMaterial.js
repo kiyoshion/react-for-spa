@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import utilStyles from '../../styles/util.module.scss'
 import { useDropzone } from 'react-dropzone'
 import MaterialStyles from './Material.module.scss'
+import { type } from "@testing-library/user-event/dist/type"
+import { Types } from '../../Types'
 
 export default function CreateItem() {
   const [ title, setTitle ] = useState("")
@@ -12,7 +14,11 @@ export default function CreateItem() {
     { title: "エピソード", level: 1 },
   ])
   const [ poster, setPoster ] = useState(null)
+  const [ types, setTypes ] = useState([])
+  const [ parentTypes, setParentTypes ] = useState([])
+  const [ childrenTypes, setChildrenTypes ] = useState([])
   const updateMaterialURL = '/api/materials'
+  const getTypesURL = '/api/types'
   const navigate = useNavigate();
 
   const StorePost = () => {
@@ -30,8 +36,7 @@ export default function CreateItem() {
             'Content-Type': 'multipart/form-data'
           }})
           .then((res) => {
-            console.log(res.data)
-            navigate(`/materials/`)
+            navigate(`/materials/${res.data.material.id}`)
           })
       })
   }
@@ -126,8 +131,21 @@ const thumbsContainer = {
     </div>
   ));
 
+  const groupBy = (xs, key) => {
+    return xs.reduce((rv, x) => {
+      (rv[x[key]] = rv[x[key]] || []).push(x)
+      return rv
+    }, {})
+  }
+
   useEffect(() => {
-    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+    axios
+      .get(getTypesURL)
+      .then(res => {
+        const result = groupBy(res.data.types, 'parent_id')
+        setTypes(result)
+        return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+      })
   }, []);
 
   return (
@@ -145,6 +163,49 @@ const thumbsContainer = {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+        <div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {Types.ja.map((type) => {
+              return (
+                // <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div key={type.id}>
+                  <span>{type.name}</span>
+                  <div style={{ display: 'flex' }}>
+                  { type.children.map((type) => {
+                    return (
+                        <p key={type.id}>{type.name}</p>
+                        )
+                      }) }
+                      </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        {/* <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', flexDirection: 'column'}}>
+            { types[0].map((type) => {
+              return (
+                <span>{type.name}</span>
+              )
+            }) }
+          </div>
+          <div>
+            <div style={{ display: 'flex' }}>
+            </div>
+          </div>
+        </div> */}
+        {/* <div>
+          {types.map((type) => {
+            return (
+              type.parent_id !== 0 ? (
+                <div key={type.id}>{type.name}</div>
+                ) : (
+                <div key={type.id}></div>
+              )
+            )
+          })}
+        </div> */}
         <div className={MaterialStyles.posterContainer}>
           <div className={MaterialStyles.inputFileContainer}>
             <div {...getRootProps()}>
