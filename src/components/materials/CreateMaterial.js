@@ -37,6 +37,7 @@ export default function CreateItem() {
             'Content-Type': 'multipart/form-data'
           }})
           .then((res) => {
+            console.log(res.data.material)
             navigate(`/materials/${res.data.material.id}`)
           })
       })
