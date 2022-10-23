@@ -1,8 +1,21 @@
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 0 1rem;
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
 .sectionContainer {
   background-color: #fff;
   border-radius: .5rem;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
   h2 {
     color: #5D6DD4;
     font-size: 1rem;
@@ -12,7 +25,7 @@
   h3 {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: .25rem;
   }
   p {
     color: #666;
@@ -24,15 +37,45 @@
 }
 
 .flexbox {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 2rem;
+  transition: all .2s ease-in-out;
+}
+
+.hideChapter .contentContainer {
+  margin: 0;
+  .contentToggleArrow svg {
+    transform: rotate(90deg);
+  }
+}
+
+.hideChapter .chapterContainer {
+  display: none;
+}
+
+.contentToggleArrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding: 1rem;
+  transform: translate(0, -50%);
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #aaa;
+    transform: rotate(-90deg);
+    transition: transform .2s ease-in-out;
+  }
 }
 
 .section {
   position: relative;
-  width: 100%;
+  width: 80%;
+  padding-left: 1rem;
+  flex-basis: calc(100% - 40px);
   a {
     position: absolute;
     top: 0;
@@ -165,7 +208,6 @@
   width: 50px;
   height: 50px;
   background-color: #fff;
-  // border-color: rgb(63, 65, 182);
   border-width: 2px;
   border-radius: 100%;
   color: rgb(63, 65, 182);
@@ -266,13 +308,13 @@ $primaryColor: rgb(85, 214, 212);
     fill: none;
     stroke-width: 4;
     stroke: #efefef;
-    stroke-dasharray: 125;
+    stroke-dasharray: 100;
     stroke-dashoffset: 0;
     stroke-linecap: round;
     &.line {
-      // stroke-dashoffset: calc(125 - (125 * 75) / 100);
       stroke: #D9EEF4;
       stroke: $primaryColor;
+      transition: all .4s ease-in-out;
     }
   }
 }
@@ -282,10 +324,10 @@ $primaryColor: rgb(85, 214, 212);
   width: 40px;
   height: 40px;
   background-color: #fff;
-  margin-right: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-basis: 40px;
 }
 
 .joinedUserContainer {
