@@ -1,0 +1,171 @@
+.avatarModal {
+  position: absolute;
+  width: 100%;
+  height: 90vh;
+  bottom: 0;
+  left: 0;
+  background-color: #444;
+  color: #fff;
+  .inner {
+    padding: 1rem;
+  }
+}
+
+.userContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255, .6);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 10;
+  &::before {
+    content: '';
+    background: inherit;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    filter: blur(10px);
+    z-index: 1;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: rgb(0,0,0);
+    // background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,.2) 30%, rgba(0,0,0,.8) 100%);
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,.9) 40%, rgba(254,254,254,.9) 60%, rgba(254,254,254,.9) 100%);
+    z-index: 5;
+  }
+}
+
+.userInner {
+  position: relative;
+  z-index: 10;
+}
+
+.userHeader {
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+.userHeaderInner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  z-index: 11;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  img,
+  svg {
+    margin-right: 1rem;
+  }
+}
+
+.joinedMaterial {
+  &Container {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #222;
+      margin: 1rem 1rem 0.5rem;
+    }
+  }
+  &List {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+    margin: 0 -1rem 0 0;
+    padding-left: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.section {
+  &Header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 0 1rem .5rem;
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    span {
+      font-size: .8rem;
+    }
+  }
+}
+
+// .wordbook {
+//   position: relative;
+//   background-color: #fff;
+//   box-shadow: 1px 2px 4px rgba(0, 0, 0, .1);
+//   border-radius:.5rem;
+//   margin: 0 0 1rem;
+//   padding: 1rem 0;
+//   &Link {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//   }
+//   &Container {
+//     margin: 0 1rem;
+//   }
+//   &Inner {
+//     display: flex;
+//     align-items: center;
+//     h3 {
+//       font-weight: 600;
+//     }
+//   }
+//   &Icon {
+//     background-color: #e99;
+//     border-radius: .5rem;
+//     color: #fff;
+//     padding: 1rem;
+//     margin: 0 1rem;
+//   }
+//   &Author {
+//     display: flex;
+//     align-items: center;
+//     span{
+//       font-size: .8rem;
+//     }
+//     &Avatar {
+//       width: 24px;
+//       height: 24px;
+//       margin-right: .5rem;
+//     }
+//   }
+// }
+
+.wordbookContainer {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  margin: 0 -1rem 0 0;
+  padding-left: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
