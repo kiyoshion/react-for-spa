@@ -8,8 +8,8 @@ import memoFormStyles from './MemoForm.module.scss'
 
 export default function MemoForm() {
   const [ memo, setMemo ] = useState("")
-  const currentMaterial = useSelector(state => state.material.currentMaterial)
-  const currentChapter = useSelector(state => state.chapter.currentChapter)
+  const currentMaterial = useSelector(state => state.root.material.currentMaterial)
+  const currentChapter = useSelector(state => state.root.chapter.currentChapter)
   const dispatch = useDispatch()
 
   const storeMemo = async () => {
@@ -18,6 +18,7 @@ export default function MemoForm() {
         body: memo,
         material_id: currentMaterial.id,
         chapter_id: currentChapter.id,
+        topic_id: currentMaterial.joinsCurrentUserTopic.topic_id,
       })
       .then((res) => {
         dispatch(setCurrentMaterial(res.data.material))
