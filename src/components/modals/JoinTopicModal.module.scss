@@ -45,7 +45,8 @@
 }
 
 .thumbnail {
-  width: 24px;
+  max-width: 27px;
+  height: 36px;
   margin-right: 1rem;
   object-fit: cover;
 }

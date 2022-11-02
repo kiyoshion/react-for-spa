@@ -1,22 +1,18 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import Cropper from 'react-cropper'
-import "cropperjs/dist/cropper.css";
 import { setAvatarModal } from "../../store/modalSlice";
 import { setUser } from "../../store/userSlice";
-import AvatarModalStyles from './AvatarModal.module.scss'
 import { CONSTS } from '../../Consts';
 import axios from '../../lib/axios';
+import Cropper from 'react-cropper'
+import "cropperjs/dist/cropper.css";
+import avatarModalStyles from './AvatarModal.module.scss'
 
 export default function AvatarModal() {
   const [ image, setImage ] = useState("")
   const [ cropper, setCropper ] = useState(null)
-  const user = useSelector(state => state.user.user)
+  const user = useSelector(state => state.root.user.data)
   const dispatch = useDispatch()
-
-  const onClickUploadButton = (e) => {
-    onFileChange(e)
-  }
 
   const onFileChange = (e) => {
     e.preventDefault()
@@ -58,11 +54,10 @@ export default function AvatarModal() {
   }
 
   return (
-    <div className={AvatarModalStyles.container}>
-      <div className={AvatarModalStyles.inner}>
+    <div className={avatarModalStyles.container}>
+      <div className={avatarModalStyles.inner}>
         <h2>プロフィール画像を編集</h2>
-        <div className={AvatarModalStyles.uploadButton}>
-          <button onClick={onClickUploadButton}>up</button>
+        <div className={avatarModalStyles.uploadButton}>
           <input type="file" accept="image/*" onChange={onFileChange} />
         </div>
         <Cropper
@@ -85,16 +80,16 @@ export default function AvatarModal() {
           }}
           guides={true}
         />
-        <div className={AvatarModalStyles.footerButtonContainer}>
+        <div className={avatarModalStyles.footerButtonContainer}>
           <div>
             <button
-              className={AvatarModalStyles.primaryButton}
+              className={avatarModalStyles.primaryButton}
               onClick={handleUpdateAvatar}
             >保存</button>
           </div>
           <div>
             <button
-              className={AvatarModalStyles.secondaryButton}
+              className={avatarModalStyles.secondaryButton}
               onClick={() => dispatch(setAvatarModal(false))}
             >キャンセル</button>
           </div>

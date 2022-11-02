@@ -6,20 +6,19 @@ import { setCurrentMaterial } from "../../store/materialSlice"
 import { setJoinTopicModal  } from "../../store/modalSlice"
 import joinTopicModalStyles from './JoinTopicModal.module.scss'
 
-export default function JoinTopicModal(props) {
+export default function JoinTopicModal({ material }) {
   const [ inputTopic, setInputTopic ] = useState("")
   const [ selectedTopic, setSelectedTopic ] = useState(false)
   const [ joinTopics, setJoinTopics ] = useState([])
   const [ totalCount, setTotalCount ] = useState(0)
-  const joinTopicModal = useSelector(state => state.modal.joinTopicModal)
-  const user = useSelector(state => state.user.user)
+  const user = useSelector(state => state.root.user.data)
   const dispatch = useDispatch()
 
   const handleStoreTopic = () => {
     const params = {
       name: inputTopic,
       lang: 'ja',
-      material_id: props.material.id,
+      material_id: material.id,
       user_id: user.id
     }
     axios
@@ -47,7 +46,7 @@ export default function JoinTopicModal(props) {
   useEffect(() => {
     let sort = []
     let total = 0
-    let tmp = [...props.material.topicsUserCount]
+    let tmp = [...material.topicsUserCount]
     if (tmp.length > 0) {
       sort = tmp.sort((a, b) => {
         return (a.count > b.count) ? -1 : 1
@@ -61,20 +60,21 @@ export default function JoinTopicModal(props) {
   }, [])
 
   return (
-    <div className={joinTopicModalStyles.container}>
+    <>
+    <div className={`${joinTopicModalStyles.container}`}>
       <div className={joinTopicModalStyles.inner}>
         <div className={joinTopicModalStyles.headline}>
           <img
             className={joinTopicModalStyles.thumbnail}
-            src={`${CONSTS.BACKEND_HOST_STORAGE}${props.material.thumbnail}`}
-            alt={props.material.title} />
-          <span>{props.material.title}で何を学習しますか？</span>
+            src={`${CONSTS.IMAGE_BASE64}${material.thumbnail}`}
+            alt={material.title} />
+          <span>{material.title}で何を学習しますか？</span>
         </div>
         <div className={joinTopicModalStyles.topicChartContainer}>
           <div className={joinTopicModalStyles.topicChartHeadline}>
             <h3>人気のTopics</h3>
             <span>
-              <span className={joinTopicModalStyles.topicChartHeadlineNumber}>{props.material.joinsUserCount}</span>
+              <span className={joinTopicModalStyles.topicChartHeadlineNumber}>{material.joinsUserCount}</span>
               人が参加中
             </span>
           </div>
@@ -145,5 +145,6 @@ export default function JoinTopicModal(props) {
         </div>
       </div>
     </div>
+    </>
   )
 }
