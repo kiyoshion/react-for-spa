@@ -4,19 +4,23 @@ import axios from '../lib/axios'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: {
+    data: {
       id: 0,
       name: "",
       avatar: "",
     },
-    isLogined: false
+    isLogined: false,
+    logout: false,
   },
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload
+      state.data = action.payload
     },
     setIsLogined: (state, action) => {
       state.isLogined = action.payload
+    },
+    logout: (state, action) => {
+      return
     }
   }
 })
@@ -28,10 +32,9 @@ export const getUser = () => async (dispatch) => {
 
 export const csrf = () => async (dispatch) => {
   const res = await axios.get('/sanctum/csrf-cookie')
-  console.log(res.data)
   res.data ? dispatch(setIsLogined(true)) : dispatch(setIsLogined(false))
 }
 
-export const { setUser, setIsLogined } = userSlice.actions
+export const { setUser, setIsLogined, logout } = userSlice.actions
 
 export default userSlice.reducer

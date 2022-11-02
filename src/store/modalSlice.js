@@ -32,6 +32,11 @@ export const modalSlice = createSlice({
   }
 })
 
-export const { setOpenOutputModal, setAvatarModal, setFlashModal, setJoinTopicModal } = modalSlice.actions
+export const {
+  setOpenOutputModal,
+  setAvatarModal,
+  setFlashModal,
+  setJoinTopicModal,
+} = modalSlice.actions
 
 export default modalSlice.reducer
