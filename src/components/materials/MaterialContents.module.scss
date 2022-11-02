@@ -1,0 +1,287 @@
+$primaryColor: rgb(85, 214, 212);
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 0 .5rem;
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  span {
+    font-size: .8rem;
+  }
+}
+
+.section {
+  position: relative;
+  width: 80%;
+  padding-left: 1rem;
+  flex-basis: calc(100% - 40px);
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  p {
+    width: 75%;
+    height: 1.25rem;
+    line-height: 1.2rem;
+    font-size: .8rem;
+    overflow: hidden;
+  }
+  &Container {
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    h2 {
+      color: #5D6DD4;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      width: 75%;
+      margin: .35rem 0 .25rem;
+    }
+    p {
+      color: #666;
+      margin: 0;
+    }
+    > div:last-child .borderContainer {
+      display: none;
+    }
+  }
+}
+
+.flexbox {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  transition: all .2s ease-in-out;
+}
+
+.contentContainer {
+  margin-top: 1rem;
+}
+
+.contentTitle {
+  &Container {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0 0;
+    h2 {
+      line-height: 1rem;
+    }
+    span {
+      font-size: .8rem;
+      font-weight: bold;
+      color: #aaa;
+    }
+  }
+}
+
+.contentToggleArrow {
+  position: absolute;
+  top: 50%;
+  right: -.5rem;
+  padding: 1rem;
+  transform: translate(0, -50%);
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #aaa;
+    transform: rotate(-90deg);
+    transition: transform .2s ease-in-out;
+  }
+}
+
+.outputButton {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.borderContainer {
+  position: absolute;
+  top: 40px;
+  left: 18px;
+  width: 4px;
+  height: 36px;
+}
+
+.border {
+  stroke: #D9EEF4;
+  stroke: #efefef;
+  stroke-width: 4;
+}
+
+.statusContainer {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 40px;
+}
+
+.hideChapter .contentContainer {
+  margin: 0;
+  .contentToggleArrow svg {
+    transform: rotate(90deg);
+  }
+}
+
+.hideChapter .chapterContainer {
+  display: none;
+}
+
+.percentContainer {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.percent {
+  position: relative;
+  svg {
+    transform: rotate(-90deg);
+  }
+  h2 {
+    margin: 0;
+  }
+}
+
+.svg {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  circle {
+    position: relative;
+    fill: none;
+    stroke-width: 4;
+    stroke: #efefef;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    &.line {
+      stroke: #D9EEF4;
+      transition: all .4s ease-in-out;
+    }
+  }
+}
+
+.status {
+  &NoneContainer {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    span {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 14px;
+      left: 14px;
+      background-color: #eee;
+      border-radius: 100%;
+      z-index: 10;
+    }
+  }
+  &None {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    background-color: #eee;
+    border-radius: 100%;
+  }
+  &PauseContainer {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    fill: $primaryColor;
+  }
+  &Pause {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &NowContainer {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+  }
+  &NowLarge {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 12px;
+    left: 11px;
+    background-color: #fff;
+    border-color: $primaryColor;
+    border-width: 2px;
+    border-radius: 100%;
+    z-index: 9;
+  }
+  &Now {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 14px;
+    background-color: $primaryColor;
+    border-radius: 100%;
+    z-index: 10;
+  }
+}
+
+.check {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  width: 12px;
+  height: 14px;
+  transition: all 1s ease;
+  z-index: 1;
+  svg {
+    fill: $primaryColor;
+  }
+}
+
+.animeScaleUp {
+  animation: anime 1.5s 0s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes anime {
+  from {
+    transform: scale(1);
+    opacity: .75;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}

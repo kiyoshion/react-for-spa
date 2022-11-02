@@ -1,0 +1,115 @@
+.joinedUserContainer {
+  display: flex;
+  margin: 0 1rem 1rem;
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+  }
+}
+
+.joinedUserList {
+  margin-left: 1rem;
+}
+
+.joinedUserInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  span {
+    color: #999;
+    font-size: .6rem;
+    font-weight: 600;
+    margin-top: .25rem;
+  }
+}
+
+.buttonCircleContainer {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.buttonCircle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-width: 2px;
+  border-radius: 100%;
+  color: rgb(63, 65, 182);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  background: rgb(77, 114, 216);
+  color: #fff;
+  z-index: 2;
+  >span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(63, 65, 182);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 3;
+  }
+}
+
+.buttonCircleLarge {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-color: rgb(77, 114, 216);
+  border-width: 2px;
+  border-radius: 100%;
+  color: rgb(63, 65, 182);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  z-index: 1;
+}
+
+.buttonLarge {
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid rgb(63, 65, 182);
+  border-radius: .5rem;
+  color: rgb(63, 65, 182);
+  width: 100%;
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 1rem 0;
+  margin: 1rem 0 2rem;
+  box-sizing: border-box;
+  a {
+    color: rgb(63, 65, 182);
+  }
+}
+
+.anime {
+  animation: border 1.5s 0s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes border {
+  0% {
+    transform: scale(1);
+    opacity: .75;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
