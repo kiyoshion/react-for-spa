@@ -1,33 +1,26 @@
-import { useEffect, useState } from 'react'
-import flashStyles from './FlashCard.module.scss'
-import ReactCardFlip from 'react-card-flip'
+import { useState } from 'react'
 import { CONSTS } from '../../Consts'
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFlashModal } from '../../store/modalSlice'
+import ReactCardFlip from 'react-card-flip'
+import flashStyles from './FlashCard.module.scss'
 
 export default function FlashCard({flash}) {
   const [ isFlipped, setIsFlipped ] = useState(false)
-  const [ currentFlash, setCurrentFlash ] = useState({})
-  const flashModal = useSelector(state => state.modal.flashModal)
+  const flashModal = useSelector(state => state.root.modal.flashModal)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    setCurrentFlash(flash)
-  }, [])
 
   const speechTitle = (e, side) => {
     e.stopPropagation()
     if (side === 'front') {
       const uttr = new SpeechSynthesisUtterance(flash.front_title)
-          uttr.lang = "en-US"
-          speechSynthesis.speak(uttr)
+      uttr.lang = "en-US"
+      speechSynthesis.speak(uttr)
     } else {
       const uttr = new SpeechSynthesisUtterance(flash.back_title)
-          uttr.lang = "ja-JP"
-          speechSynthesis.speak(uttr)
-     }
+      uttr.lang = "ja-JP"
+      speechSynthesis.speak(uttr)
+    }
   }
 
   const flipCard = (e) => {
@@ -59,43 +52,53 @@ export default function FlashCard({flash}) {
       <div onClick={flipCard} className={`${flashStyles.card}`}>
         <div className={flashStyles.cardContent}>
           <h2>{flash.front_title}</h2>
-          <p>{flash.front_description}</p>
+          {flash.front_description && <p>{flash.front_description}</p>}
         </div>
-        { flash.front_image_small && (
-          <div className={flashStyles.cardFooter}>
-            <div className={flashStyles.zoomContainer} onClick={(e) => handleFlashModal(e, true, 'front')}>
-              <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flash.front_image_small}`} alt={flash.front_title} />
-            </div>
+        <div className={flashStyles.cardFooter}>
+          {flash.front_image_small ? (
             <div
+              className={flashStyles.zoomContainer}
+              onClick={(e) => handleFlashModal(e, true, 'front')}
+            >
+              <img src={`${CONSTS.IMAGE_BASE64}${flash.front_image_small}`} alt={flash.front_title} />
+            </div>
+          ) : (
+            <div className={flashStyles.zoomContainer}></div>
+          )}
+          <div
             className={flashStyles.speechButton}
             onClick={(e) => speechTitle(e, 'front')}
             >
-              <span>S</span>
-            </div>
-          </div>)
-        }
+            <span>S</span>
+          </div>
+        </div>
       </div>
       <div onClick={flipCard} className={`${flashStyles.card} ${flashStyles.back}`}>
         <div className={flashStyles.cardContent}>
           <h2>{flash.back_title}</h2>
-          <p>{flash.back_description}</p>
+          {flash.back_description && <p>{flash.back_description}</p>}
         </div>
-        { flash.back_image_small && (
-          <div className={flashStyles.cardFooter}>
-            <div className={flashStyles.zoomContainer} onClick={(e) => handleFlashModal(e, true, 'back')}>
-              <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flash.back_image_small}`} alt={flash.back_title} />
-            </div>
+        <div className={flashStyles.cardFooter}>
+          {flash.back_image_small ? (
             <div
+              className={flashStyles.zoomContainer}
+              onClick={(e) => handleFlashModal(e, true, 'back')}
+            >
+              <img src={`${CONSTS.IMAGE_BASE64}${flash.back_image_small}`} alt={flash.back_title} />
+            </div>
+          ) : (
+            <div className={flashStyles.zoomContainer}></div>
+          )}
+          <div
             className={flashStyles.speechButton}
             onClick={(e) => speechTitle(e, 'back')}
-            >
-              <span>S</span>
-            </div>
-          </div>)
-        }
+          >
+            <span>S</span>
+          </div>
+        </div>
       </div>
     </ReactCardFlip>
-    { flashModal.isOpen &&
+    {flashModal.isOpen &&
       <div className={flashStyles.flashModalContainer}>
         <div
           className={flashStyles.flipButton}
@@ -103,34 +106,41 @@ export default function FlashCard({flash}) {
         >⇆
         </div>
         <div className={flashStyles.flashModalInner}>
-          { flashModal.side === 'front' ?
+          {flashModal.side === 'front' ?
             <>
               <div className={flashStyles.flashModalHeader}>
-                <h2>{flashModal.flash.front_title}</h2>
-                {flashModal.flash.front_description &&
-                  <p>{flashModal.flash.front_description}</p>
-                }
+                <h2 className={flashStyles.flashModalTitle}>{flashModal.flash.front_title}</h2>
               </div>
-              { flashModal.flash.front_image_large &&
-                <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flashModal.flash.front_image_large}`} alt={flashModal.flash.front_title} />
+              {flashModal.flash.front_image_large &&
+                <div className={flashStyles.flashModalImage}>
+                  <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flashModal.flash.front_image_large}`} alt={flashModal.flash.front_title} />
+                </div>
+              }
+              {flashModal.flash.front_description &&
+                <p className={flashStyles.flashModalDescription}>{flashModal.flash.front_description}</p>
               }
             </>
           :
             <>
               <div className={flashStyles.flashModalHeader}>
-                <h2>{flashModal.flash.back_title}</h2>
-                {flashModal.flash.back_description &&
-                  <p>{flashModal.flash.back_description}</p>
-                }
+                <h2 className={flashStyles.flashModalTitle}>{flashModal.flash.back_title}</h2>
               </div>
-              { flashModal.flash.back_image_large &&
-                <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flashModal.flash.back_image_large}`} alt={flashModal.flash.back_title} />
+              {flashModal.flash.back_image_large &&
+                <div className={flashStyles.flashModalImage}>
+                  <img src={`${CONSTS.BACKEND_HOST_STORAGE}${flashModal.flash.back_image_large}`} alt={flashModal.flash.back_title} />
+                </div>
+              }
+              {flashModal.flash.back_description &&
+                <p className={flashStyles.flashModalDescription}>{flashModal.flash.back_description}</p>
               }
             </>
           }
         </div>
         <div>
-          <button onClick={(e) => handleFlashModal(e, false, '')}>CLOSE</button>
+          <button
+            className={flashStyles.button}
+            onClick={(e) => handleFlashModal(e, false, '')}
+          >CLOSE</button>
         </div>
       </div>
     }

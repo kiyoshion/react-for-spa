@@ -8,7 +8,7 @@
   margin: .5rem auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   z-index: 99;
   &Front {
@@ -31,8 +31,10 @@
   }
 }
 
+$cardBackBackgroundColor: #1e1e28;
+
 .back {
-  background-color: #1e1e28;
+  background-color: $cardBackBackgroundColor;
   color: #fff;
   p {
     color: #fff;
@@ -40,7 +42,6 @@
 }
 
 .speechButton {
-  // position: absolute;
   background-color: #404040;
   color: #fff;
   width: 48px;
@@ -57,12 +58,9 @@
 }
 
 .zoomContainer {
-  // position: relative;
-  // position: absolute;
+  position: relative;
   width: 48px;
   height: 48px;
-  left: 1rem;
-  bottom: 1rem;
   z-index: 100;
   img {
     width: 48px;
@@ -77,18 +75,19 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 3rem 1rem 1rem;
+  padding: 1rem;
   h2 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0;
+    margin: .5rem 0;
     line-height: 1.5rem;
     text-align: center;
   }
   p {
-    color: #888;
-    line-height: 1rem;
-    // font-weight: 600;
+    color: #aaa;
+    font-weight: 600;
+    margin: .5rem 0;
+    line-height: 1.25rem;
     text-align: left;
   }
 }
@@ -96,7 +95,7 @@
 .back {
   .cardContent {
     p {
-      color: #fff;
+      color: #ddd;
     }
   }
 }
@@ -114,7 +113,8 @@
   height: 100vh;
   left: 0;
   bottom: 0;
-  background-color: rgba(25, 25, 25, .9);
+  background-color: rgba(25, 25, 25, 0.8);
+  backdrop-filter: blur(5px);
   z-index: 101;
 }
 
@@ -123,24 +123,28 @@
   height: 90vh;
   overflow-y: scroll;
   color: #fff;
-  h2 {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.25rem;
-  }
-  p {
-    font-size: .8rem;
-    font-weight: 600;
-    color: #ddd;
-  }
   img {
     width: 100%;
     object-fit: cover;
   }
 }
 
-.flashModalHeader {
-  margin: 1rem 3rem 1rem 1rem;
+.flashModal {
+  &Header {
+    margin: 1rem 3rem 1rem 1rem;
+  }
+  &Title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    margin: 1rem 0;
+  }
+  &Description {
+    font-size: .8rem;
+    font-weight: 600;
+    color: #ddd;
+    padding: 1rem;
+  }
 }
 
 .flipButton {
