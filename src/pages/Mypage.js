@@ -8,7 +8,7 @@ import axios from '../lib/axios'
 import Avatar from "../components/common/Avatar";
 import UserWordbook from "../components/common/UserWordbook";
 import JoinedMaterialCard from "../components/common/JoinedMaterialCard";
-import mypageStyles from './Maypage.module.scss'
+import mypageStyles from './Mypage.module.scss'
 
 export default function Mypage() {
   const navigate = useNavigate();
