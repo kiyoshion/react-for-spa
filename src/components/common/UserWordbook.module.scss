@@ -1,0 +1,154 @@
+.wordbook {
+  position: relative;
+  display: inline-block;
+  min-width: calc(180px + .75rem);
+  min-height: calc(140px + 1rem);
+  background-color: #fff;
+  border-radius: 0 0 .5rem .5rem;
+  box-shadow: 1px 2px 4px rgba(0,0,0,.1);
+  margin: 0 1rem 1rem 0;
+  img {
+    object-fit: cover;
+    border-radius: .5rem;
+  }
+  &Thumbs {
+    display: inline-block;
+    border-radius: .5rem .5rem 0 0;
+    &Zero {
+      img {
+        width: calc(180px + .25rem);
+        height: 120px;
+        margin: .25rem;
+      }
+    }
+    &One {
+      display: flex;
+      align-items: center;
+      border-radius: .5rem .5rem 0 0;
+      img {
+        width: 90px;
+        height: 120px;
+      }
+      &Left {
+        img {
+          margin: .25rem;
+        }
+      }
+      &Right {
+        img {
+          margin: .25rem .25rem .25rem 0;
+        }
+      }
+    }
+    &Two {
+      display: flex;
+      align-items: center;
+      border-radius: .5rem .5rem 0 0;
+      img {
+        width: 90px;
+        height: 120px;
+      }
+      &Left {
+        img {
+          margin: .25rem;
+        }
+      }
+      &Right {
+        img {
+          margin: .25rem .25rem .25rem 0;
+        }
+      }
+    }
+    &Three {
+      display: flex;
+      align-items: center;
+      border-radius: .5rem .5rem 0 0;
+      &Left {
+        img {
+          width: 120px;
+          height: 120px;
+          width: 90px;
+          height: 120px;
+          margin: .25rem;
+        }
+      }
+      &Right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        &Top {
+          img {
+            width: 60px;
+            width: 90px;
+            height: 60px;
+            margin: .25rem .25rem 0 0;
+          }
+        }
+        &Bottom {
+          img {
+            width: 60px;
+            width: 90px;
+            height: 60px;
+            margin: .25rem .25rem .25rem 0;
+          }
+        }
+      }
+    }
+  }
+  &Link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+  &Content {
+    position: relative;
+    padding: .5rem 0 0;
+    text-align: center;
+    &Author {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      span {
+        font-size: .8rem;
+      }
+    }
+    &Footer {
+      margin-top: 1.5rem;
+      &Total {
+        font-size: .8rem;
+        span {
+          font-size: 1rem;
+          font-weight: 600;
+          margin-right: .25rem;
+        }
+      }
+      &Buttons {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        justify-content: flex-end;
+        margin-top: -1.5rem;
+        &Material {
+          position: relative;
+          padding: 1rem;
+          z-index: 11;
+          img {
+            width: 20px;
+            height: 24px;
+            object-fit: cover;
+            border-radius: .25rem;
+          }
+        }
+        &Bookmark {
+          position: relative;
+          padding: 1rem;
+          z-index: 11;
+        }
+      }
+    }
+  }
+}
