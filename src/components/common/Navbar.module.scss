@@ -1,0 +1,49 @@
+.container {
+  background-color: rgba(255, 255, 255, .8);
+  margin-bottom: 0rem;
+  width: 100%;
+  overflow-x: scroll;
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: .5rem 1rem;
+    .list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      a {
+        margin-right: 2rem;
+        &.btn {
+          border-radius: .25rem;
+          padding: .5rem 2rem;
+          font-size: .8rem;
+          &:hover {
+            color: #eee;
+            opacity: .8;
+          }
+          &_blue {
+            &:hover {
+              color: #0070f3;
+              opacity: .8;
+            }
+          }
+        }
+      }
+      li:last-child a {
+        margin-right: 0;
+      }
+    }
+    a {
+      display: block;
+      padding: .5rem 0;
+    }
+  }
+}
+
+.logo {
+  display: inline-block;
+  font-weight: bold;
+}
