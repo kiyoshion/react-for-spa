@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:8000/'
+const HOST = process.env.REACT_APP_HOST
 
 export const CONSTS = {
   APP_NAME: 'Fav Study',
