@@ -7,7 +7,6 @@ import { setCurrentMaterial } from '../../store/materialSlice'
 import { setCurrentChapter } from '../../store/chapterSlice'
 import materialContentsStyle from './MaterialContents.module.scss'
 import axios from '../../lib/axios'
-import IconAvatarNoname from '../icons/IconAvatarNoname'
 import IconOutput from '../icons/IconOutput'
 
 export default function MaterialContents() {
@@ -173,16 +172,6 @@ export default function MaterialContents() {
                   <Link to={getCurrentChapterURL(chapter.id)}></Link>
                   <h3>{chapter.title}</h3>
                   <p>{getCurrentUserOutput(chapter)}</p>
-                  {/* <div style={{display:'flex',alignItems:'center', margin:'0.25rem 0 0'}}>
-                    <div style={{display:'flex',alignItems:'center',marginRight:'1rem'}}>
-                      <IconAvatarNoname size="14" />
-                      <span style={{fontSize:'.8rem',marginLeft:'.5rem', color:'#aaa'}}>{chapter.statusesNowCount}</span>
-                    </div>
-                    <div style={{display:'flex',alignItems:'center'}}>
-                      <IconOutput size="14" fill="#aaa" />
-                      <span style={{fontSize:'.8rem',marginLeft:'.5rem', color:'#aaa'}}>{chapter.flashesCount + chapter.memosCount}</span>
-                    </div>
-                  </div> */}
                   <div
                     className={materialContentsStyle.outputButton}
                     style={{width:'24px', height:'24px',top: '1rem',right:'-.5rem'}}
